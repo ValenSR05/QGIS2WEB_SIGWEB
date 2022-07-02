@@ -26,9 +26,12 @@
     </head>
     <body>
         <div id="map">
+            <img id="norte" src="images/norte.png" alt=""></img>
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <!--<script src="js/leaflet.js"></script>-->
+        <script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -48,10 +51,12 @@
         <script src="data/RecursoMinero_7.js"></script>
         <script src="data/LocalizacinEspecies_8.js"></script>
         <script src="data/SitiosdeInters_9.js"></script>
+        <script src="js/Leaflet.Graticule.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
         })
+        var mapaBase = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -62,9 +67,6 @@
                 map.fitBounds(bounds_group.getBounds());
             }
         }
-        //Ediciones//    
-        //var mapaBase = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
-        //Fin de ediciones//
 
         function pop_Ecosistemas_0(feature, layer) {
             var popupContent = '<table>\
@@ -550,6 +552,20 @@
         map.on("layerremove", function(){
             resetLabels([layer_Corregimientos_1,layer_Ros_4]);
         });
+
+        L.latlngGraticule({
+            showlabel: true,
+            zoomInterval: [
+            {start:2, end:3,interval:30}, //Pocos decimales
+            {start:4, end:4,interval:10}, //Pocos decimales
+            {start:5, end:7,interval:5},  //Pocos decimales
+            {start:8, end:10,interval:1}, //Pocos decimales
+            {start:10, end:12,interval:0.5}
+        ]
+        }).addTo(map);
+
+        
+
         </script>
     </body>
 </html>

@@ -2,6 +2,13 @@
         #map {
             background-color: #ffffff
         }
+        #norte{
+            position: fixed;
+            z-index: 9999;
+            width: 100px;
+            top: 10px;
+            left: 50px;
+        }
         th {
             text-align: left;
             vertical-align: top;
@@ -34,7 +41,7 @@
         .leaflet-tooltip-left:before, .leaflet-tooltip-right:before {
             border: 0px;
         }
-        }
+        
         .fa, .leaflet-container, a {
             color: #7f23b1 !important;
         }
