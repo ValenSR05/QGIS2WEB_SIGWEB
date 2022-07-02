@@ -59,6 +59,9 @@
                 map.fitBounds(bounds_group.getBounds());
             }
         }
+
+        var mapaBase = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18}).addTo(map);
+
         function pop_Ecosistemas_0(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
